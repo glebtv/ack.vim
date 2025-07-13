@@ -5,7 +5,9 @@ local M = {}
 
 -- Detect which searcher is available
 local function detect_searcher()
-  if vim.fn.executable('ag') == 1 then
+  if vim.fn.executable('rg') == 1 then
+    return "rg --vimgrep"
+  elseif vim.fn.executable('ag') == 1 then
     return "ag --vimgrep"
   elseif vim.fn.executable('ack') == 1 then
     return "ack --column"
@@ -18,7 +20,7 @@ end
 
 -- Default config
 local _config = {
-  -- Location of the ack utility (auto-detects ag, ack, or ack-grep)
+  -- Location of the ack utility (auto-detects rg, ag, ack, or ack-grep)
   ackprg = nil,
   
   -- Apply quickfix mappings

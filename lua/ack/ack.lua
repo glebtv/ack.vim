@@ -189,7 +189,7 @@ end)
 -- Main ack function
 function M.ack(cmd, args, use_loclist, async)
   if _config.ack_not_found then
-    vim.notify('✗ [ack] ack/ag not found on the system', lvl.ERROR)
+    vim.notify('✗ [ack] rg/ag/ack not found on the system', lvl.ERROR)
     return
   end
   

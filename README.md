@@ -2,7 +2,7 @@
 
 **A modern Lua port of ack.vim, compatible with lazy.nvim**
 
-This plugin provides a front-end for search tools like [ack](https://beyondgrep.com/) and [ag (the_silver_searcher)](https://github.com/ggreer/the_silver_searcher), allowing you to run searches from Neovim and display results in a quickfix window.
+This plugin provides a front-end for search tools like [ripgrep (rg)](https://github.com/BurntSushi/ripgrep), [ag (the_silver_searcher)](https://github.com/ggreer/the_silver_searcher), and [ack](https://beyondgrep.com/), allowing you to run searches from Neovim and display results in a quickfix window.
 
 ## Credits
 
@@ -12,7 +12,7 @@ Parts of this code are inspired by [rg.nvim](https://github.com/doums/rg.nvim) b
 ## Features
 
 - **Modern Lua implementation** - Fully rewritten in Lua for better performance and maintainability
-- **Auto-detection** - Automatically detects and uses `ag`, `ack`, or `ack-grep` (in that order of preference)
+- **Auto-detection** - Automatically detects and uses `rg`, `ag`, `ack`, or `ack-grep` (in that order of preference)
 - **Lazy.nvim compatible** - Works seamlessly with the lazy.nvim plugin manager
 - **Async search** - Non-blocking search operations using Neovim's job control
 - **Quickfix integration** - Results displayed in quickfix with customizable mappings
@@ -21,11 +21,22 @@ Parts of this code are inspired by [rg.nvim](https://github.com/doums/rg.nvim) b
 ## Requirements
 
 - Neovim >= 0.7.0
-- Either [ack](https://beyondgrep.com/) or [ag (the_silver_searcher)](https://github.com/ggreer/the_silver_searcher)
+- One of: [ripgrep](https://github.com/BurntSushi/ripgrep), [ag (the_silver_searcher)](https://github.com/ggreer/the_silver_searcher), or [ack](https://beyondgrep.com/)
 
 ### Installing Search Tools
 
-**ag (the_silver_searcher) - Recommended**
+**ripgrep (rg) - Highly Recommended**
+
+    # macOS
+    brew install ripgrep
+    
+    # Ubuntu/Debian
+    sudo apt-get install ripgrep
+    
+    # Fedora
+    sudo yum install ripgrep
+
+**ag (the_silver_searcher) - Alternative**
 
     # macOS
     brew install the_silver_searcher

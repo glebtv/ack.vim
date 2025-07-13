@@ -10,9 +10,9 @@ function M.setup(config)
   vim.g.ack_setup_called = true
   config = cfg.init(config or {})
   
-  -- Check for ack/ag executable
+  -- Check for rg/ack/ag executable
   if not config.ackprg then
-    vim.notify('✗ [ack] No ack or ag (the_silver_searcher) found on the system', vim.log.levels.ERROR)
+    vim.notify('✗ [ack] No rg (ripgrep), ag (the_silver_searcher), or ack found on the system', vim.log.levels.ERROR)
     config.ack_not_found = true
   elseif config.show_notifications then
     local executable = vim.split(config.ackprg, " ")[1]
