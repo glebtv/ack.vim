@@ -124,9 +124,12 @@ local function apply_qf_mappings()
       { buffer = true, silent = true, desc = 'Open with window picker' })
     vim.keymap.set('n', '<CR>', open_file_with_picker, 
       { buffer = true, silent = true, desc = 'Open with window picker' })
-    -- Mouse support
+    -- Mouse support - override with higher priority
     vim.keymap.set('n', '<2-LeftMouse>', open_file_with_picker,
-      { buffer = true, silent = true, desc = 'Open with window picker (mouse)' })
+      { buffer = true, silent = true, desc = 'Open with window picker (mouse)', nowait = true })
+    -- Prevent single click from interfering
+    vim.keymap.set('n', '<LeftMouse>', '<LeftMouse>', 
+      { buffer = true, silent = true, desc = 'Position cursor' })
   else
     vim.keymap.set('n', 'o', '<CR>', { buffer = true, silent = true })
     vim.keymap.set('n', '<2-LeftMouse>', '<CR>', { buffer = true, silent = true })
@@ -277,7 +280,10 @@ function M.init(config)
       -- Only apply to quickfix windows created by ack
       local title = vim.fn.getqflist({ title = 0 }).title or ""
       if title:match("Ack Results") then
-        apply_qf_mappings()
+        -- Apply mappings with a small delay to ensure they override defaults
+        vim.defer_fn(function()
+          apply_qf_mappings()
+        end, 1)
       end
     end
   })
